@@ -4,6 +4,7 @@
 |Contents|
 |--------|
 |[Globals](#0)|
+|[GlobalVarsBase](#p)|
 |[UI](#1)|
 |[Entity](#2)|
 |[Render](#3)|
@@ -107,159 +108,58 @@ Cheat.Print(current_stage);
 ## <a name="1"></a>UI
 |-------------------------------|
 
-  [ **ADDLABEL** ]
+  [ **ADDTEXT** ]
 string text.
-```java
-UI.AddLabel("Test");
-```
-
-  [ **TOGGLEHOTKEY** ]
-Syntax: UI.ToggleHotkey(...item)  
-Can be used to toggle a hotkey or simulate key press.  
-**Return Values:** 1 is key is active, 0 if the key is inactive  
-```java
-UI.ToggleHotkey("Rage", "GENERAL", "Exploits", "Doubletap");
-function toggleDoubletap()
-{
-   
-    var isKeyActive = UI.IsHotkeyActive( "Rage", "GENERAL", "Exploits", "Doubletap" );
-    Cheat.Print( "Key is: " + isKeyActive + "\n");
-   
-}
-Global.RegisterCallback("CreateMove", "toggleDoubletap");
-```
-
-  [ **ADDTEXTBOX** ]
-Syntax: UI.AddTextbox("string")  
-Adds a textbox in which you can input text and read it later on.  
-**Returns** an array of strings.  
-```java
-var textbox;
-
-function test( ) {
-    var test = UI.GetString.apply( this, textbox );
-  
-    Cheat.Print( test + "\n" );
-}
-
-function init( ) {
-    checkbox = UI.AddTextbox( "Test" );
-    Cheat.RegisterCallback( "Draw", "test" );
-}
-
-init( );
+```lua
+UI.AddText("Test");
 ```
 
   [ **SETCOLOR** ]
 Syntax: UI.SetColor(...item)  
 Used to set precise RGBA color codes in color picker.  
-```java
-function HSVtoRGB(h, s, v) {
-    var r, g, b, i, f, p, q, t;
-    if (arguments.length === 1) {
-        s = h.s, v = h.v, h = h.h;
-    }
-    i = Math.floor(h * 6);
-    f = h * 6 - i;
-    p = v * (1 - s);
-    q = v * (1 - f * s);
-    t = v * (1 - (1 - f) * s);
-    switch (i % 6) {
-        case 0: r = v, g = t, b = p; break;
-        case 1: r = q, g = v, b = p; break;
-        case 2: r = p, g = v, b = t; break;
-        case 3: r = p, g = q, b = v; break;
-        case 4: r = t, g = p, b = v; break;
-        case 5: r = v, g = p, b = q; break;
-    }
-    return {
-        r: Math.round(r * 255),
-        g: Math.round(g * 255),
-        b: Math.round(b * 255)
-    };
-}
-
-function rainbowColors( )
+```lua
+function Colors( )
 {
-    tickcount = Globals.Tickcount();
-    color = HSVtoRGB(tickcount % 350 / 350, 1, 1, 1, 255);
-    UI.SetColor("Visual", "ENEMIES", "ESP", "Glow", [color.r, color.g, color.b, 255]);
+    UI.SetColor("Test", 255, 255, 255, 255);
 
 }
-Cheat.RegisterCallback("Draw", "rainbowColors");
+Client.AddCallback("paint", Colors);
 ```
 
 
   [ **ADDCOLORPICKER** ]
 Syntax: UI.AddColorPicker(string name)  
 Adds a color picker.  
-```java
-colorpicker = UI.AddColorPicker("example");
+```lua
+colorpicker = UI.AddColorPicker("Test");
 ```
 
-  [ **ADDMULTIDROPDOWN** ]
-Syntax: UI.AddMultiDropdown(name, items)  
-Will create a dropdown in which you can select more items under Misc - JAVASCRIPT - Script items.  
-```java
-UI.AddMultiDropdown( "Test", [ "one", "two", "three", "four" ] );
-```
-
-  [ **ISMENUOPEN** ]
-Syntax: UI.IsMenuOpen()  
-**Returns** true if the menu is open, false otherwise.  
-```java
-if (UI.IsMenuOpen( ) == true)
-{
-    Cheat.Print("Menu is open");
-}
-```
-
-  [ **ADDDROPDOWN** ]
-Syntax: UI.AddHotkey(name)  
-Will create a dropdown with items under Misc - JAVASCRIPT - Script items.  
-```java
-UI.AddDropdown( "Test", [ "one", "two", "three", "four" ] );
-```
-
-  [ **ADDHOTKEY** ]
-Syntax: UI.AddHotkey(name)  
-Create a label with a key picker control under Misc - JAVASCRIPT - Script items.    
-```java
-UI.AddHotkey( "Test" );
+  [ **ADDCOMBOBOX** ]
+Syntax: UI.AddComboBox(name)  
+Will create a dropdown with items under Scripts or LUA TAB.  
+```lua
+UI.AddComboBox( "Test", "one", "two", "three", "four" );
 ```
 
   [ **ADDSLIDERFLOAT** ]
-Syntax: UI.AddSliderFloat(name, min_value, max_value)    
-Create a floating point slider under Misc - JAVASCRIPT - Script items.  
-```java
-UI.AddSliderFloat( "Test", 0.0, 2.5 );
+Syntax: UI.AddSliderFloat(name, min_value, max_value, state_value)    
+Create a floating point slider under Scripts or LUA TAB.  
+```lua
+UI.AddSliderFloat( "Test", 0.0, 2.5, 1.0 );
 ```
 
   [ **ADDSLIDERINT** ]
-Syntax: UI.AddSliderInt(name, min_value, max_value)  
-Create a integer slider under Misc - JAVASCRIPT - Script items.  
-```java
-UI.AddSliderInt( "Test", 0, 100 );
+Syntax: UI.AddSliderInt(name, min_value, max_value, state_value)  
+Create a integer slider under Script or LUA TAB.  
+```lua
+UI.AddSliderInt( "Test", 0, 100, 50 );
 ```
 
   [ **ADDCHECKBOX** ]
-Syntax: UI.AddSliderInt(name, min_value, max_value)  
-Create a checkbox control under Misc - JAVASCRIPT - Script items.    
-```java
-UI.AddCheckbox( "Test" );
-```
-
-  [ **ISHOTKEYACTIVE** ]
-Syntax: UI.AddSliderInt(name, min_value, max_value)  
-Can be used to determine whether or not hotkey is active.  
-**Return values**	undefined if an item could not be found, or if the item doesn't contain a key picker; otherwise 1 if the key is active, 0 if the key is inactive.  
-```java
-function isKeyActive()
-{
-    var isKeyActive = UI.IsHotkeyActive( "Legit", "GENERAL", "General", "Enabled" );
-    Cheat.Print( "Key is: " + isKeyActive + "\n" );
-    // Above line will print 0 or 1 depending whether the hotkey is active or not.
-}
+Syntax: UI.AddCheckbox(name, state)  
+Create a checkbox control under Scripts or LUA TAB.    
+```lua
+UI.AddCheckbox( "Test", false );
 ```
 
   [ **GETCOLOR** ]
