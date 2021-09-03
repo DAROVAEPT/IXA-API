@@ -26,6 +26,42 @@
 
 ## <a name="0"></a>Globals
 |-------------------------------|
+[ **GETFRAMERATE** ]
+Syntax: Globals.GetFramerate()  
+**Returns** time in seconds it took to render the frame.
+```lua
+Globals.GetFramerate();
+```
+
+[ **GETPING** ]
+Syntax: Globals.GetPing()  
+**Returns** amount of ticks elapsed on the server.
+```lua
+local ping = Globals.GetPing();
+Cheat.Print("Server tickrate: " + ping);
+```
+[ **GETSERVERADDRESS** ]
+Syntax: Globals.GetServerAddress()  
+**Returns** get server adress [valve, public, local].
+```lua
+local server = Globals.GetServerAddress();
+Cheat.Print("Server: " + server);
+```
+
+[ **SETSERVERADDRESS** ]
+Syntax: Globals.SetServerAddress(ingame, netchannelinfo, local, valve)  
+Set names adress
+**Returns**  
+
+```lua
+local server = Globals.SetServerAddress("ingame", "netchannelinfo", "local", "valve");
+Cheat.Print(server);
+```
+
+[back to Contents](#-1)
+
+## <a name="p"></a>GlobalVarsBase
+|-------------------------------|
 Syntax: Globals.ChokedCommands()  
 **Returns** amount of choked commands.
 ```java
