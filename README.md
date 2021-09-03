@@ -1,4 +1,4 @@
-# onetapapi
+# API
 <a name="-1"></a>
 
 |Contents|
@@ -26,8 +26,6 @@
 
 ## <a name="0"></a>Globals
 |-------------------------------|
-
-**IN OT V3 CRACK NOT WORKS** [ **ChokedCommands** ]
 Syntax: Globals.ChokedCommands()  
 **Returns** amount of choked commands.
 ```java
@@ -114,6 +112,13 @@ string text.
 UI.AddText("Test");
 ```
 
+  [ **ADDINPUTTEXT** ]
+Syntax: UI.InputText(name, state)
+Adds a input text. 
+```lua
+UI.AddInputText("Test", Hello world!);
+```
+
   [ **SETCOLOR** ]
 Syntax: UI.SetColor(...item)  
 Used to set precise RGBA color codes in color picker.  
@@ -131,11 +136,11 @@ Client.AddCallback("paint", Colors);
 Syntax: UI.AddColorPicker(string name)  
 Adds a color picker.  
 ```lua
-colorpicker = UI.AddColorPicker("Test");
+UI.AddColorPicker("Test");
 ```
 
   [ **ADDCOMBOBOX** ]
-Syntax: UI.AddComboBox(name)  
+Syntax: UI.AddComboBox(name, label)  
 Will create a dropdown with items under Scripts or LUA TAB.  
 ```lua
 UI.AddComboBox( "Test", "one", "two", "three", "four" );
@@ -163,67 +168,80 @@ UI.AddCheckbox( "Test", false );
 ```
 
   [ **GETCOLOR** ]
-Syntax: UI.GetColor(...item)  
+Syntax: UI.GetColor(item)  
 Can be used to get precise RGBA color codes from color picker.  
 **Return values**	undefined if an item could not be found, or if the item doesn't contain a color picker  
-```java
-function ammoColor()
+```lua
+function getcolor()
 {
-    var ammo_color = UI.GetColor( "Visuals", "SELF", "ESP", "Ammo" );
-    Cheat.Print( "Ammo color is: " + ammo_color + "\n" );
-    // Above line will print RGBA value of ammo color picker.
+    local test = UI.GetColor( "Test" );
+    Client.PrintLog(test);
 }
 ```
 
-  [ **GETSTRING** ]
-Syntax: UI.GetString (...item)  
-**Returns** a string representation of an item's current value.
-
-UI item searches are not explicit: the search will return the first found item. This means that **UI.GetValue( "Legit", "Triggerbot", "Enabled" )** will return the same value as **UI.GetValue( "Legit", "GENERAL", "Triggerbot", "Enabled" ).  **
-
-All script-added items are located in a groupbox within the misc tab, under javascript group called "Script items". Searching for ( "Script Items", *item name* ) is certain to return a script control.  
-```java
-function hitboxesEnabled()
-{
-    var hb = UI.GetString( "Legit", "GENERAL", "Default config", "Hitboxes" );
-    Cheat.Print( "enabled hitboxes: " + hb + "\n" );
-    // Above line will print enabled hitboxes in default legit config into in-game console when this script is loaded.
-}
-```
-
-  [ **SETENABLED** ]
-Syntax: UI.SetEnabled (...item)  
-Changes menu item(s) visibility.  
-
-UI item searches are not explicit: the search will return the first found item. This means that **UI.GetValue( "Legit", "Triggerbot", "Enabled" )** will return the same value as **UI.GetValue( "Legit", "GENERAL", "Triggerbot", "Enabled" )**.  
-
-All script-added items are located in a groupbox within the misc tab, under javascript group called "Script items". Searching for ( "Script Items", *item name* ) is certain to return a script control.  
-UI.SetEnabled does not work on tabs/subtabs.  
-
-
-```java
-function hideTriggerbotCheckbox()
-{
-    UI.SetEnabled( "Legit", "GENERAL", "Triggerbot", "Enabled", false );
-    // Above line will hide the triggerbot "Enabled" checkbox however, its value can still be changed and accessed.
-}
-```  
-
-  [ **SETVALUE** ]
-Syntax: UI.SetValue (...item, value)  
+  [ **SETBOOL** ]
+Syntax: UI.SeBool (...item, value)  
 Sets the value of an UI item's setting.  
 **Return values**	undefined if an item could not be found, setting value otherwise
-UI item searches are not explicit: the search will return the first found item. This means that **UI.GetValue( "Legit", "Triggerbot", "Enabled" )** will return the same value as **UI.GetValue( "Legit", "GENERAL", "Triggerbot", "Enabled" ). ** 
+All script-added items are located in a groupbox within the scripts tab, Searching for ( LUA TAB or Scripts, *item name* ) is certain to return a script control.  
 
-All script-added items are located in a groupbox within the misc tab, under javascript group called "Script items". Searching for ( "Script Items", *item name* ) is certain to return a script control.  
-
-```java
-function enableMagnet()
+```lua
+function Test()
 {
-   UI.SetValue( "Legit", "GENERAL", "Triggerbot", "Magnet", true );
-   UI.SetValue( "Legit", "GENERAL", "General", "Reaction time", 0.2 );
+   UI.SetBool( "Script", true );
 }
-// This function will enable triggerbot magnet option and set aimbot reaction time to 0.2
+```
+
+  [ **SETINT** ]
+Syntax: UI.SetInt (...item, value)  
+Sets the value of an UI item's setting.  
+**Return values**	undefined if an item could not be found, setting value otherwise
+All script-added items are located in a groupbox within the scripts tab, Searching for ( LUA TAB or Scripts, *item name* ) is certain to return a script control.  
+
+```lua
+function Test()
+{
+   UI.SetInt( "Script", 2 );
+}
+```
+
+  [ **SETFLOAT** ]
+Syntax: UI.SetFloat (...item, value)  
+Sets the value of an UI item's setting.  
+**Return values**	undefined if an item could not be found, setting value otherwise
+All script-added items are located in a groupbox within the scripts tab, Searching for ( LUA TAB or Scripts, *item name* ) is certain to return a script control.  
+
+```lua
+function Test()
+{
+   UI.SetInt( "Script", 2.0 );
+}
+```
+
+  [ **SETINPUTTEXT** ]
+Syntax: UI.SetInputText (...item, value)  
+Sets the value of an UI item's setting.  
+**Return values**	undefined if an item could not be found, setting value otherwise
+All script-added items are located in a groupbox within the scripts tab, Searching for ( LUA TAB or Scripts, *item name* ) is certain to return a script control.  
+
+```lua
+function Test()
+{
+   UI.SetInt( "Script", "Test" );
+}
+```
+
+  [ **SETCOLOR** ]
+Syntax: UI.SetColor (...item, value)  
+Sets the value of an UI item's setting.  
+**Return values**	undefined if an item could not be found, setting value otherwise
+All script-added items are located in a groupbox within the scripts tab, Searching for ( LUA TAB or Scripts, *item name* ) is certain to return a script control.  
+
+```lua
+function Test()
+{
+   UI.SetInt( "Script", 255, 255, 255, 255 );
+}
 ```
 
   [ **GETVALUE** ]
