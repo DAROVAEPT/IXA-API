@@ -26,6 +26,7 @@
 
 ## <a name="0"></a>Globals
 |-------------------------------|
+
 [ **GETFRAMERATE** ]
 Syntax: Globals.GetFramerate()  
 **Returns** time in seconds it took to render the frame.
@@ -38,14 +39,14 @@ Syntax: Globals.GetPing()
 **Returns** amount of ticks elapsed on the server.
 ```lua
 local ping = Globals.GetPing();
-Cheat.Print("Server tickrate: " + ping);
+Client.PrintChat("Server tickrate: " + ping);
 ```
 [ **GETSERVERADDRESS** ]
 Syntax: Globals.GetServerAddress()  
 **Returns** get server adress [valve, public, local].
 ```lua
 local server = Globals.GetServerAddress();
-Cheat.Print("Server: " + server);
+Client.PrintChat("Server: " + server);
 ```
 
 [ **SETSERVERADDRESS** ]
@@ -55,67 +56,70 @@ Set names adress
 
 ```lua
 local server = Globals.SetServerAddress("ingame", "netchannelinfo", "local", "valve");
-Cheat.Print(server);
+Client.PrintChat(server);
+```
+
+[ **GETTIME** ]
+Syntax: Globals.GetTime()  
+**Returns** time in seconds.
+```lua
+Globals.GetTime();
+```
+
+[ **GETUSERNAME** ]
+Syntax: Globals.GetUsername()  
+**Returns** Forum username.
+```lua
+Globals.GetUsername();
 ```
 
 [back to Contents](#-1)
 
 ## <a name="p"></a>GlobalVarsBase
 |-------------------------------|
-Syntax: Globals.ChokedCommands()  
-**Returns** amount of choked commands.
-```java
-function choked_commands()
-{
-    var choked = Globals.ChokedCommands();
-    Cheat.Print(choked+'\n');
 
-}
-Cheat.RegisterCallback("CreateMove", "choked_commands")
-```
-
-[ **REALTIME** ]
-Syntax: Globals.Realtime()  
+[ **GETREALTIME** ]
+Syntax: Globals.GetRealTime()  
 **Returns** time in seconds since CS:GO was started.
-```java
-realtime = Globals.Realtime();
+```lua
+Globals.GetRealTime();
 ```
 
-[ **FRAMETIME** ]
-Syntax: Globals.Frametime()  
+[ **GETFRAMETIME** ]
+Syntax: Globals.GetFrameTime()  
 **Returns** time in seconds it took to render the frame.
-```java
-frametime = Globals.Frametime();
+```lua
+Globals.GetFrameTime();
 ```
 
-[ **CURTIME** ]
-Syntax: Globals.Curtime()  
+[ **GETCURTIME** ]
+Syntax: Globals.GetCurTime()  
 **Returns** the game time in seconds.
-```java
-var curTime = Globals.Curtime();
-Cheat.Print("Current game time in seconds: " + curTime);
+```lua
+local curtime = Globals.GetCurTime();
+Client.PrintChat("Current game time in seconds: " + curtime);
 ```
-[ **TICKINTERVAL** ]
-Syntax: Globals.TickInterval()  
+[ **GETINTERVALPERTICK** ]
+Syntax: Globals.GetIntervalpertick()  
 **Returns** the game time in seconds.
-```java
-var tickInterval = Globals.TickInterval();
-Cheat.Print("Tick interval: " + tickInterval);
+```lua
+local tickInterval = Globals.GetIntervalpertick();
+Client.PrintChat("Tick interval: " + tickInterval);
 ```
 
-[ **TICKRATE** ]
-Syntax: Globals.Tickrate()  
+[ **GETTICKRATE** ]
+Syntax: Globals.GetTickRate()  
 **Returns** server tick settings, usually 64 or 128.
-```java
-var tickrate = Globals.Tickrate();
-Cheat.Print("Server tickrate: " + tickrate);
+```lua
+local tickrate = Globals.GetTickRate();
+Client.PrintChat("Server tickrate: " + tickrate);
 ```
-[ **TICKCOUNT** ]
-Syntax: Globals.Tickcount()  
+[ **GETTICKCOUNT** ]
+Syntax: Globals.GetTickcount()  
 **Returns** amount of ticks elapsed on the server.
-```java
-var tickcount = Globals.Tickcount();
-Cheat.Print("Ticks elapsed on server: " + tickcount);
+```lua
+local tickcount = Globals.GetTickcount();
+Client.PrintChat("Ticks elapsed on server: " + tickcount);
 ```
 
 [ **TICKCOUNT** ]
@@ -133,7 +137,7 @@ Used to get current frame stage
 
 ```java
 var current_stage = Globals.FrameStage();
-Cheat.Print(current_stage);
+Client.PrintChat(current_stage);
 // Prints current stage.
 ```
 
